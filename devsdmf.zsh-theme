@@ -21,15 +21,10 @@ function check_git_prompt_info() {
 }
 
 function get_right_prompt() {
-    local NUBEDNS=""
-    if [[ "$(networksetup -getdnsservers Wi-Fi)" = *"192.168.33.10"* ]]; then
-        NUBEDNS="%{$fg_bold[white]%}{%{$fg[magenta]%}nube-env%{$fg_bold[white]%}}"
-    fi
-
     if git rev-parse --git-dir > /dev/null 2>&1; then
-        echo -n "$NUBEDNS$(git_prompt_short_sha)%{$reset_color%}"
+        echo -n "$(git_prompt_short_sha)%{$reset_color%}"
     else
-        echo -n "$NUBEDNS%{$reset_color%}"
+        echo -n "%{$reset_color%}"
     fi
 }
 
